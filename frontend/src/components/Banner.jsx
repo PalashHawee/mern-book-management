@@ -35,7 +35,7 @@ const Banner=()=> {
                 <button className="btn btn-active btn-secondary mt-6">Subscribe</button>
             </div>
             <div className='order-1 w-full md:w-1/2'>
-                <img src={banner} className='w-300 h-300 mt-12' alt='banner picture'/>
+                <img src={banner} className='px-12 py-12 w-300 h-300 mt-12' alt='banner picture'/>
             </div>
         </div>
     </>
