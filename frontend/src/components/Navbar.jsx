@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Login from './Login';
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -31,8 +32,8 @@ const Navbar = () => {
         <>
             <li><a href="/">Home</a></li>
             <li><a href="/course">Course</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/about">About</a></li>
         </>
     );
 
@@ -74,7 +75,7 @@ const Navbar = () => {
                     </div>
                     <div className="hidden md:block">
                         <label className="px-3 py-2 border rounded-md flex items-center gap-2">
-                            <input type="text" className="grow outline-none" placeholder="Search" />
+                            <input type="text" className="grow outline-none dark:bg-slate-900 dark:text-white" placeholder="Search " />
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 16 16"
@@ -115,9 +116,14 @@ const Navbar = () => {
                         </label>
                     </div>
                     <div>
-                        <a className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 cursor-pointer duration-300">
+                        <a className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 cursor-pointer duration-300
+                        
+                        "
+                         onClick={() => document.getElementById('my_modal_1').showModal()}
+                        >
                             Login
                         </a>
+                        <Login/>
                     </div>
                 </div>
             </div>
