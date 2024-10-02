@@ -21,7 +21,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-900 dark:text-white">
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 py-6 w-96">
         <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
         
