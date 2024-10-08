@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Login() {
   const {
@@ -8,14 +10,37 @@ function Login() {
     handleSubmit,
     formState: { errors },
     } = useForm();
-    const onSubmit =
-    (data) => {
-      console.log("Form submitted:", data);
+    const onSubmit = async(data) => {
+      const userInfo = {
+      email: data.email,
+      password: data.password,
+    }
+    await axios.post("http://localhost:5000/user/login", userInfo)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          toast.success('Logged in Successfull!');
+           document.getElementById('my_modal_1').close()
+          setTimeout(() => { 
+            
+            window.location.reload()
+             localStorage.setItem("users", JSON.stringify(res.data.user) )
+          },3000)
+         
+        }
+       
+      }).catch((err) => { 
+        if (err.response) {
+          console.error(`Error: ${err.response.status}`);
+          toast.error(err.response.data.message);
+          setTimeout(() => { },3000)
+        }
+      })
     };
   return (
     <div>
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
+      <dialog id="my_modal_1" className="modal ">
+        <div className="modal-box dark:bg-slate-900 dark:text-white">
           <form onSubmit={handleSubmit(onSubmit)} method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <Link
@@ -34,7 +59,7 @@ function Login() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-80 px-3 py-1 border rounded-md outline-none"
+                className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
                 {...register("email", { required: true })}
               />
               <br />
@@ -51,7 +76,7 @@ function Login() {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-80 px-3 py-1 border rounded-md outline-none"
+                className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
                 {...register("password", { required: true })}
               />
               <br />

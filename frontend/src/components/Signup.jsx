@@ -1,10 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { useForm } from "react-hook-form";
 import axios from "axios"
+import toast from "react-hot-toast";
 
 function Signup() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from=location.state?.from?.pathname || '/'
   const {
     register,
     handleSubmit,
@@ -21,12 +25,14 @@ function Signup() {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          alert("Signup successful!")
+          toast.success('Signup Successfull!');
+          navigate(from,{replace:true})
         }
+        localStorage.setItem("users", JSON.stringify(res.data.user) )
       }).catch((err) => { 
         if (err.response) {
           console.error(`Error: ${err.response.status}`);
-          alert(err.response.data.message);
+           toast.error(err.response.data.message);
         }
       })
    
@@ -35,7 +41,7 @@ function Signup() {
     <>
       <div className="flex h-screen items-center justify-center">
         <div className=" w-[600px] ">
-          <div className="modal-box">
+          <div className="modal-box dark:bg-slate-900 dark:text-white">
             <form onSubmit={handleSubmit(onSubmit)} method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <Link
@@ -52,7 +58,7 @@ function Signup() {
                 <input
                   type="text"
                   placeholder="Enter your fullname"
-                  className="w-80 px-3 py-1 border rounded-md outline-none"
+                  className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
                   {...register("fullName", { required: true })}
                 />
                 <br />
@@ -69,7 +75,7 @@ function Signup() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-80 px-3 py-1 border rounded-md outline-none"
+                  className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
                   {...register("email", { required: true })}
                 />
                 <br />
@@ -86,7 +92,7 @@ function Signup() {
                 <input
                   type="text"
                   placeholder="Enter your password"
-                  className="w-80 px-3 py-1 border rounded-md outline-none"
+                  className="w-80 px-3 py-1 border rounded-md outline-none dark:bg-slate-900 dark:text-white"
                   {...register("password", { required: true })}
                 />
                 <br />
