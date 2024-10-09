@@ -9,39 +9,18 @@ A web application built on the MERN stack (MongoDB, Express, React, Node.js) wit
 - **Course Page**: Restricted access; users must be logged in to view.
 - **Responsive Design**: Built using Tailwind CSS for a modern UI.
 
-## Entity-Relationship Diagram (ER Diagram)
-The following is a simple description of the entities involved:
 
-User: Represents the users of the application.
-userId (Primary Key)
-name
-email (Unique)
-password
-Book: Represents the books available in the application.
-bookId (Primary Key)
-title
-author
-description
-isFree (Boolean)
 
-+--------+          +--------+
-|  User  |          |  Book  |
-+--------+          +--------+
-| userId |<-----+   | bookId |
-| name   |      |   | title  |
-| email  |      |   | author  |
-| password|     |   | description|
-+--------+      |   | isFree  |
-                +---+--------+
 ## Installation
-git clone https://github.com/yourusername/book-management-store.git
+cd backend
+npm install
+cd frontend 
+npm install
 
-Usage
+## Usage
 Visit the homepage to view available free books.
 Use the login/signup forms to access the course page.
 Log out to return to the homepage.
-
- 
 
 ## Flowchart
 
@@ -72,5 +51,4 @@ Here’s a simple flowchart illustrating the user interaction process:
    v
 [End]
 
-
-
+ 
